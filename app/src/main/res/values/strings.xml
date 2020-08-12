@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">guttizaidan12rpl12018</string>
+
+    <string name="register">REGISTER</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_confrpassword_hint">Confirm Password</string>
+    <string name="login_hint">Register</string>
 </resources>
