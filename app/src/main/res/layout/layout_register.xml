@@ -35,24 +35,46 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputPassword"
+            android:id="@+id/textInputusername"
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin">
             <EditText
-                android:id="@+id/etPassword"
+                android:id="@+id/etUsername"
                 style="@style/modifiedEditText"
-                android:hint="@string/login_password_hint"
+                android:hint="Username"
                 android:maxLines="1"
-                android:inputType="textPassword"/>
+                />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputConfrPassword"
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin">
             <EditText
-                android:id="@+id/etConfrPassword"
+                android:id="@+id/etNomorhp"
                 style="@style/modifiedEditText"
-                android:hint="@string/login_confrpassword_hint"
+                android:hint="Nomor Hp"
+                android:maxLines="1"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputAlamat"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/loginViewsMargin">
+            <EditText
+                android:id="@+id/etAlamat"
+                style="@style/modifiedEditText"
+                android:hint="Alamat"
+                android:maxLines="1"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputPassword"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/loginViewsMargin">
+            <EditText
+                android:id="@+id/etPassword"
+                style="@style/modifiedEditText"
+                android:hint="Password"
                 android:maxLines="1"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
