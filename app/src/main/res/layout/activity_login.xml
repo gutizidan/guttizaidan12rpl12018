@@ -3,8 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="#e9ecef"
     style="@style/loginParent"
+    android:fitsSystemWindows="true"
     tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/pengki1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mobil" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:scaleY="2"
+        android:src="@drawable/backgroundapik" />
     <ScrollView
 
         style="@style/parent">
@@ -21,14 +36,12 @@
 
                 <LinearLayout
                     style="@style/parent"
-                    android:background="@drawable/login_shape_bk"
                     android:orientation="vertical"
                     android:layout_weight="3">
 
                     <ImageView
                         style="@style/parent"
                         android:layout_height="240dp"
-                        android:background="@drawable/ic_login2_bk"
                         android:contentDescription="login background" />
 
                 </LinearLayout>
@@ -40,34 +53,24 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp">
 
 
                 <ImageView
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_maps_and_location" />
+                    android:src="@drawable/ic_undraw_city_driver_jh2h" />
 
 
-                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="RENTAL MOBIL"
-                    android:layout_marginTop="10dp"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold|italic"
-                    android:textColor="@color/whiteTextColor"
-                    android:layout_gravity="center_horizontal"
-                    />
+
                 <include
                     layout="@layout/layout_login"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     />
 
