@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@null"
     tools:context=".DashboardActivity">
 
 
@@ -100,7 +100,7 @@
             android:layout_height="@dimen/_20sdp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/_35sdp"
+            android:layout_marginRight="40dp"
             android:src="@drawable/ic_account_circle_black_24dp"/>
         </RelativeLayout>
         <LinearLayout
