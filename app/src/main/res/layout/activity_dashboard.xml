@@ -1,126 +1,559 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".DashboardActivity">
-    <ScrollView
-
-        style="@style/parent">
-
-        <RelativeLayout
-            style="@style/parent">
 
 
-            <LinearLayout
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+
+        android:orientation="vertical"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:paddingLeft="@dimen/horizontal_dashboard"
+            android:paddingTop="@dimen/fab_margin"
+            android:paddingRight="@dimen/horizontal_dashboard"
+
+
+            android:weightSum="100">
+
+            <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewRegular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_weight="40"
+                android:text="Hey, What would you like to rent today ?"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp">
+
+
+            </com.example.app.guttizaidan12rpl12018.ui.CustomTextViewRegular>
+
+
+
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/login_shape_bk"
-                android:weightSum="12">
+
+                android:layout_weight="60"
+                android:src="@drawable/refer_icon">
+
+            </ImageView>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normalPadding"
+            android:orientation="horizontal"
+            >
+
+        <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewRegular
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/horizontal_dashboard"
+            android:id="@+id/search"
+
+            android:layout_marginRight="@dimen/horizontal_dashboard"
+
+            android:background="@drawable/container_search"
+            android:drawableStart="@drawable/ic_search_black_24dp"
+
+            android:drawableLeft="@drawable/ic_search_black_24dp"
+
+            android:drawablePadding="@dimen/drawable_left"
+
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/normalPadding"
+            android:paddingTop="@dimen/vertical_search"
+            android:paddingRight="@dimen/normalPadding"
+            android:paddingBottom="@dimen/vertical_search"
+
+            android:text="Search Here"
+            android:textColor="#B2B2B2"
+
+            android:textSize="14sp">
+
+        </com.example.app.guttizaidan12rpl12018.ui.CustomTextViewRegular>
+
+        <ImageView
+            android:id="@+id/profile"
+            android:clickable="true"
+            android:onClick="@+id/profiledashboard"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_35sdp"
+            android:src="@drawable/ic_account_circle_black_24dp"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:background="@null">
 
                 <LinearLayout
-                    style="@style/parent"
-                    android:orientation="vertical"
-                    android:layout_weight="3">
-                    <RelativeLayout
-                        android:background="@drawable/bg_round"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:padding="@dimen/_5sdp"
-                        android:layout_marginVertical="@dimen/_10sdp"
-                        android:orientation="horizontal">
-
-                        <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rental Mobil "
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            />
-                        <ImageView
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:src="@drawable/ic_account_circle_black_24dp"
-                            android:layout_alignParentRight="true"
-                            />
-
-
-
-                    </RelativeLayout>
-
-                    <ImageView
-                        style="@style/parent"
-                        android:layout_height="@dimen/_100sdp"
-                        android:contentDescription="login background" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="80dp"
+                    android:background="#f8fafb"
+                    android:orientation="vertical">
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_35sdp"
-                >
-
-
-                <include
-                    layout="@layout/layout_dashboard"
-                    android:layout_height="match_parent"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_firstcoureses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/horizontal_dashboard"
+                        android:layout_marginTop="@dimen/normalPadding"
+                        android:layout_marginRight="@dimen/horizontal_dashboard"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
-        </RelativeLayout>
+                        <androidx.cardview.widget.CardView
 
-    </ScrollView>
-<!--    <LinearLayout-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        android:padding="@dimen/_10sdp"-->
-<!--        android:layout_height="wrap_content">-->
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
 
+                            android:layout_marginTop="@dimen/horizontal_card"
+                            android:layout_marginEnd="@dimen/horizontal_card"
+                            android:layout_marginRight="@dimen/horizontal_card"
+                            android:layout_marginBottom="@dimen/horizontal_card"
 
-<!--        <RelativeLayout-->
-<!--            android:background="@drawable/bg_round"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:elevation="@dimen/_3sdp"-->
-<!--            android:padding="@dimen/_5sdp"-->
-<!--            android:layout_marginVertical="@dimen/_10sdp"-->
-<!--            android:orientation="horizontal">-->
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:focusable="true"
 
-<!--            <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Rental Mobil "-->
-<!--                android:textColor="@color/colorPrimary"-->
-<!--                android:textSize="@dimen/_14sdp"-->
-<!--                />-->
-<!--            <ImageView-->
-<!--                android:layout_width="@dimen/_20sdp"-->
-<!--                android:layout_height="@dimen/_20sdp"-->
-<!--                android:src="@drawable/ic_account_circle_black_24dp"-->
-<!--                android:layout_alignParentRight="true"-->
-<!--                />-->
+                            android:foreground="?attr/selectableItemBackground"
 
 
+                            app:cardCornerRadius="@dimen/card_radius"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="false">
 
-<!--        </RelativeLayout>-->
-<!--        -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
 
-<!--    </LinearLayout>-->
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/img_card_height"
+                                    android:padding="@dimen/_5sdp"
+                                    android:src="@drawable/ic_undraw_city_driver_jh2h" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
 
 
-</RelativeLayout>
+                                    android:text="Design Thinking"
+                                    android:textColor="@color/darkTextColor"
+                                    android:textSize="16sp" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_subtitle_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+                                    android:layout_marginBottom="@dimen/normalPadding"
+
+
+                                    android:text="19 courses"
+                                    android:textColor="@color/dashboard_subtitle"
+                                    android:textSize="11sp" />
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/horizontal_card"
+                            android:layout_marginEnd="@dimen/horizontal_card"
+                            android:layout_marginRight="@dimen/horizontal_card"
+                            android:layout_marginBottom="@dimen/horizontal_card"
+
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:focusable="true"
+
+                            android:foreground="?attr/selectableItemBackground"
+
+
+                            app:cardCornerRadius="@dimen/card_radius"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="false">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/img_card_height"
+                                    android:padding="@dimen/_5sdp"
+                                    android:src="@drawable/ic_undraw_city_driver_jh2h" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+
+
+                                    android:text="Design Thinking"
+                                    android:textColor="@color/darkTextColor"
+                                    android:textSize="16sp" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_subtitle_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+                                    android:layout_marginBottom="@dimen/normalPadding"
+
+
+                                    android:text="19 courses"
+                                    android:textColor="@color/dashboard_subtitle"
+                                    android:textSize="11sp" />
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_secondcoureses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/horizontal_dashboard"
+                        android:layout_marginTop="@dimen/normalPadding"
+                        android:layout_marginRight="@dimen/horizontal_dashboard"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/horizontal_card"
+                            android:layout_marginEnd="@dimen/horizontal_card"
+                            android:layout_marginRight="@dimen/horizontal_card"
+                            android:layout_marginBottom="@dimen/horizontal_card"
+
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:focusable="true"
+
+                            android:foreground="?attr/selectableItemBackground"
+
+
+                            app:cardCornerRadius="@dimen/card_radius"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="false">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/img_card_height"
+                                    android:padding="@dimen/_5sdp"
+                                    android:src="@drawable/ic_undraw_city_driver_jh2h" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+
+
+                                    android:text="Design Thinking"
+                                    android:textColor="@color/darkTextColor"
+                                    android:textSize="16sp" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_subtitle_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+                                    android:layout_marginBottom="@dimen/normalPadding"
+
+
+                                    android:text="19 courses"
+                                    android:textColor="@color/dashboard_subtitle"
+                                    android:textSize="11sp" />
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/horizontal_card"
+                            android:layout_marginEnd="@dimen/horizontal_card"
+                            android:layout_marginRight="@dimen/horizontal_card"
+                            android:layout_marginBottom="@dimen/horizontal_card"
+
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:focusable="true"
+
+                            android:foreground="?attr/selectableItemBackground"
+
+
+                            app:cardCornerRadius="@dimen/card_radius"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="false">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/img_card_height"
+                                    android:padding="@dimen/_5sdp"
+                                    android:src="@drawable/ic_undraw_city_driver_jh2h" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+
+
+                                    android:text="Design Thinking"
+                                    android:textColor="@color/darkTextColor"
+                                    android:textSize="16sp" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_subtitle_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+                                    android:layout_marginBottom="@dimen/normalPadding"
+
+
+                                    android:text="19 courses"
+                                    android:textColor="@color/dashboard_subtitle"
+                                    android:textSize="11sp" />
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/horizontal_dashboard"
+                        android:layout_marginTop="@dimen/normalPadding"
+                        android:layout_marginRight="@dimen/horizontal_dashboard"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/horizontal_card"
+                            android:layout_marginEnd="@dimen/horizontal_card"
+                            android:layout_marginRight="@dimen/horizontal_card"
+                            android:layout_marginBottom="@dimen/horizontal_card"
+
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:focusable="true"
+
+                            android:foreground="?attr/selectableItemBackground"
+
+
+                            app:cardCornerRadius="@dimen/card_radius"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="false">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/img_card_height"
+                                    android:padding="@dimen/_5sdp"
+                                    android:src="@drawable/ic_undraw_city_driver_jh2h" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+
+
+                                    android:text="Design Thinking"
+                                    android:textColor="@color/darkTextColor"
+                                    android:textSize="16sp" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_subtitle_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+                                    android:layout_marginBottom="@dimen/normalPadding"
+
+
+                                    android:text="19 courses"
+                                    android:textColor="@color/dashboard_subtitle"
+                                    android:textSize="11sp" />
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/horizontal_card"
+                            android:layout_marginEnd="@dimen/horizontal_card"
+                            android:layout_marginRight="@dimen/horizontal_card"
+                            android:layout_marginBottom="@dimen/horizontal_card"
+
+                            android:layout_weight="1"
+                            android:clickable="true"
+                            android:focusable="true"
+
+                            android:foreground="?attr/selectableItemBackground"
+
+
+                            app:cardCornerRadius="@dimen/card_radius"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="false">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/card_view_image"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/img_card_height"
+                                    android:padding="@dimen/_5sdp"
+                                    android:src="@drawable/ic_undraw_city_driver_jh2h" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+
+
+                                    android:text="Design Thinking"
+                                    android:textColor="@color/darkTextColor"
+                                    android:textSize="16sp" />
+
+                                <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/normalPadding"
+                                    android:layout_marginTop="@dimen/top_text_subtitle_card"
+
+                                    android:layout_marginRight="@dimen/normalPadding"
+                                    android:layout_marginBottom="@dimen/normalPadding"
+
+
+                                    android:text="19 courses"
+                                    android:textColor="@color/dashboard_subtitle"
+                                    android:textSize="11sp" />
+
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

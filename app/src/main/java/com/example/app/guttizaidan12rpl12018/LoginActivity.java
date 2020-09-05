@@ -13,6 +13,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -41,7 +46,77 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                isFormFilled = true;
+                final String hp = et_username.getText().toString();
+                final String password = et_password.getText().toString();
+
+                if (hp.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Harap lengkapi isian yang tersedia", Toast.LENGTH_SHORT).show();
+                    isFormFilled = false;
+                }
+                if (isFormFilled) {
+                    btnLogin.startAnimation();
+                    HashMap<String, String> body = new HashMap<>();
+                    body.put("email", hp);
+                    body.put("password", password);
+                    AndroidNetworking.post("http://192.168.6.82/TugasAPI2/login.php")
+                            .addBodyParameter(body)
+                            .setPriority(Priority.MEDIUM)
+                            .build()
+                            .getAsJSONObject(new JSONObjectRequestListener() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Log.d("GZS", "respon : " + response);
+
+                                    String status = response.optString("STATUS");
+                                    String message = response.optString("MESSAGE");
+                                    String sender = response.optString("SENDER");
+                                    if (status.equalsIgnoreCase("SUCCESS")) {
+                                        JSONObject payload = response.optJSONObject("PAYLOAD");
+                                        String U_ID = payload.optString("LOGIN_ID");
+                                        String U_NAME = payload.optString("LOGIN_NAME");
+
+
+                                        preferences = getSharedPreferences("Tugas PTS", Context.MODE_PRIVATE);
+                                        preferences.edit()
+                                                .putString("id", U_ID)
+                                                .putString("nama", U_NAME)
+                                                .apply();
+
+                                        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                                        startActivity(intent);
+                                        Toast.makeText(LoginActivity.this, sender, Toast.LENGTH_SHORT).show();
+                                        finish();
+                                        finishAffinity();
+                                    }
+                                    else {
+                                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    btnLogin.revertAnimation();
+                                }
+
+                                @Override
+                                public void onError(ANError anError) {
+                                    btnLogin.revertAnimation();
+                                    Toast.makeText(LoginActivity.this, "ERROR LUR", Toast.LENGTH_SHORT).show();
+                                    Log.d("GZS", "onError: " + anError.getErrorBody(    ));
+                                    Log.d("GZS", "onError: " + anError.getLocalizedMessage());
+                                    Log.d("GZS", "onError: " + anError.getErrorDetail());
+                                    Log.d("GZS", "onError: " + anError.getResponse());
+                                    Log.d("GZS  ", "onError: " + anError.getErrorCode());
+                                }
+                            });
+                }
             }
         });
+    }
+    public void viewRegisterClicked(View v){
+        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(intent);
+        Toast.makeText(LoginActivity.this, "Move to Register", Toast.LENGTH_SHORT).show();
+        finish();
+
+
     }
 }

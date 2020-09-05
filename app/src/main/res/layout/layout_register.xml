@@ -82,6 +82,21 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputNoktp"
+            style="@style/parent"
+            android:textColorHint="@color/whiteTextColor"
+
+            android:layout_marginTop="@dimen/loginViewsMargin">
+            <com.example.app.guttizaidan12rpl12018.ui.CustomEditTextBold
+                android:id="@+id/etNomorKtp"
+                style="@style/modifiedEditText"
+                android:textColor="@color/whiteTextColor"
+                android:textColorHint="@color/whiteTextColor"
+                android:hint="Nomor KTP"
+                android:maxLines="1"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputPassword"
             style="@style/parent"
             android:textColorHint="@color/whiteTextColor"
@@ -113,7 +128,7 @@
             app:spinning_bar_padding="6dp"
             app:initialCornerAngle="27dp"
             android:background="@drawable/login_button_bk"
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             style="@style/loginButton"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/loginViewsMargin"/>

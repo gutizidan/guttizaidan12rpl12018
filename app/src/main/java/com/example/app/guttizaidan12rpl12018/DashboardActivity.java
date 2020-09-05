@@ -2,8 +2,21 @@ package com.example.app.guttizaidan12rpl12018;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -25,53 +38,56 @@ public class DashboardActivity extends AppCompatActivity {
     private SliderView sliderView;
     private SliderAdapter sliderAdapter;
     private ArrayList<SliderModel> sliderModels = new ArrayList<>();
+    ImageView profile;
+    private TextView nama;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        sliderView = findViewById(R.id.sliderInfo);
-        setupSlider();
-        getBanners();
-    }
-    private void setupSlider() {
-        sliderAdapter = new SliderAdapter(sliderModels, this);
-        sliderView.setSliderAdapter(sliderAdapter);
-    }
+        profile = findViewById(R.id.profile);
+        SharedPreferences sharedPreferences = getSharedPreferences("Tugas PTS", MODE_PRIVATE);
+        final String ide = sharedPreferences.getString("nama","");
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View dlgView = LayoutInflater.from(DashboardActivity.this).inflate(R.layout.dialog_profile, null);
+                final Dialog dialog = new Dialog(DashboardActivity.this, android.R.style.Theme_Material_Dialog);
+                nama = (TextView) dlgView.findViewById(R.id.tvNamaProfile);
+                nama.setText(ide);
 
-    private void getBanners(){
-        //retry on fail connection
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .retryOnConnectionFailure(true)
-                .build();
-        AndroidNetworking.get("https://www.themealdb.com/api/json/v1/1/search.php?s=fish")
-                .setPriority(Priority.LOW)
-                .setOkHttpClient(okHttpClient)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("RBA", "MEALS: " + response);
-                        try {
-                            JSONArray payload = response.getJSONArray("meals");
 
-                            for (int i = 0; i < payload.length(); i++) {
-                                JSONObject data = payload.getJSONObject(i);
-                                String SLD_IMG_PATH = data.getString("strMealThumb");
-                                sliderModels.add(new SliderModel(
-                                        SLD_IMG_PATH
-                                ));
-                            }
-                            sliderAdapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+
+                ((LinearLayout) dlgView.findViewById(R.id.divDelete)).setOnClickListener(new View.OnClickListener() {
+                    private void doNothing() {
+
                     }
 
                     @Override
-                    public void onError(ANError anError) {
-                        Log.e("", "onError: " + anError.getErrorBody() );
+                    public void onClick(View view) {
+                        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Tugas PTS", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.apply();
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        startActivity(i);
+                        finish();
+
                     }
                 });
+
+                dialog.setContentView(dlgView);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+
+
     }
+
 }

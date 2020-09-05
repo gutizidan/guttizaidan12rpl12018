@@ -13,4 +13,10 @@
     <color name="whiteCardColor">#fff</color>
     <color name="colorWhite">#fff</color>
     <color name="colorRed">#EE2337</color>
+
+    <!--colors for dashboard-->
+    <color name="darkTextColor">#020000</color>
+    <color name="dashboard_subtitle">#B7B7CC</color>
+
+
 </resources>

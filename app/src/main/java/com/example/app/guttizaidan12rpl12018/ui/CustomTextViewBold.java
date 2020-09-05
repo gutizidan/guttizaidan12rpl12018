@@ -26,7 +26,7 @@ public class CustomTextViewBold extends AppCompatTextView {
 
     private void init() {
         if (!isInEditMode()) {
-            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Bold.ttf");
+            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/bariol_bold.otf");
             setTypeface(tf);
         }
     }

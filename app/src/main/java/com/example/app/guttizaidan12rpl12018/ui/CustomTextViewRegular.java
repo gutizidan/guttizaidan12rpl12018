@@ -26,7 +26,7 @@ public class CustomTextViewRegular extends AppCompatTextView {
 
     private void init() {
         if (!isInEditMode()) {
-            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Regular.ttf");
+            Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/bariol_regular.otf");
             setTypeface(tf);
         }
     }

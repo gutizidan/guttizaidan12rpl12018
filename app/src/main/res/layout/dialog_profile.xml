@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog"
+    android:orientation="vertical"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:paddingBottom="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_dialog_top"
+            android:gravity="left"
+            android:padding="@dimen/_10sdp"
+            android:text="PROFILE"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/_6ssp"
+        android:layout_marginRight="@dimen/_6ssp"
+        android:gravity="center_horizontal"
+        android:padding="8sp">
+
+        <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="#4E4E4E"
+            android:text="Nama"
+            android:textStyle="bold"/>
+
+        <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+            android:id="@+id/tvNamaProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="Nama"
+            android:textColor="#585858"
+            android:textSize="@dimen/_10ssp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/_6ssp"
+        android:layout_marginRight="@dimen/_6ssp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:padding="8sp">
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/divDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="@dimen/_5ssp"
+            android:padding="@dimen/_8ssp">
+
+            <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/colorRed"
+                android:textStyle="bold"
+                android:text="LOG OUT" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

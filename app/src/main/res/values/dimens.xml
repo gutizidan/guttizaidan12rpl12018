@@ -7,6 +7,23 @@
 
     <dimen name="signup_text_margin_top">10dp</dimen>
 
+    <!--    Dashboard-->
+    <dimen name="normalPadding">20dp</dimen>
+    <dimen name="staggedmarginbottom">21dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="horizontal_dashboard">32dp</dimen>
+    <dimen name="img_card_height">120dp</dimen>
+    <dimen name="drawable_left">5dp</dimen>
+    <dimen name="card_course_dashboard_elevation">.2dp</dimen>
+
+    <dimen name="vertical_search">10dp</dimen>
+    <dimen name="card_radius">14dp</dimen>
+    <dimen name="horizontal_card">8dp</dimen>
+
+    <dimen name="top_text_card">14dp</dimen>
+    <dimen name="top_text_subtitle_card">4dp</dimen>
+
+
 
 
 </resources>
