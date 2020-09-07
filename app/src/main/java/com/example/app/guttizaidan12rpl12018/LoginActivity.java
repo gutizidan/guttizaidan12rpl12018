@@ -75,19 +75,30 @@ public class LoginActivity extends AppCompatActivity {
                                         JSONObject payload = response.optJSONObject("PAYLOAD");
                                         String U_ID = payload.optString("LOGIN_ID");
                                         String U_NAME = payload.optString("LOGIN_NAME");
+                                        String ROLE = payload.optString("ROLE");
 
 
                                         preferences = getSharedPreferences("Tugas PTS", Context.MODE_PRIVATE);
                                         preferences.edit()
                                                 .putString("id", U_ID)
                                                 .putString("nama", U_NAME)
+                                                .putString("role", ROLE)
                                                 .apply();
+                                        if (ROLE.equalsIgnoreCase("Customer") ){
+                                            Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                                            startActivity(intent);
+                                            Toast.makeText(LoginActivity.this, sender, Toast.LENGTH_SHORT).show();
+                                            finish();
+                                            finishAffinity();
+                                        }else if (ROLE.equalsIgnoreCase("Admin") ){
+                                            Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                                            startActivity(intent);
+                                            Toast.makeText(LoginActivity.this, sender, Toast.LENGTH_SHORT).show();
+                                            finish();
+                                            finishAffinity();
+                                        }
 
-                                        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
-                                        startActivity(intent);
-                                        Toast.makeText(LoginActivity.this, sender, Toast.LENGTH_SHORT).show();
-                                        finish();
-                                        finishAffinity();
+
                                     }
                                     else {
                                         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();

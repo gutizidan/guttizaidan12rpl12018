@@ -35,9 +35,7 @@ import java.util.ArrayList;
 import okhttp3.OkHttpClient;
 
 public class DashboardActivity extends AppCompatActivity {
-    private SliderView sliderView;
-    private SliderAdapter sliderAdapter;
-    private ArrayList<SliderModel> sliderModels = new ArrayList<>();
+
     ImageView profile;
     private TextView nama;
 

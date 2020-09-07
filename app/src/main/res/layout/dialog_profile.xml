@@ -79,6 +79,7 @@
             android:padding="@dimen/_8ssp">
 
             <com.example.app.guttizaidan12rpl12018.ui.CustomTextViewBold
+                android:id="@+id/TvLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_10ssp"

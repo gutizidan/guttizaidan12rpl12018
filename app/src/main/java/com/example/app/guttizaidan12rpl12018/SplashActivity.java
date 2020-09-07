@@ -18,10 +18,10 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         SharedPreferences sharedPreferences = getSharedPreferences("Tugas PTS", MODE_PRIVATE);
-        final String ide = sharedPreferences.getString("id", "");
-        System.out.println(ide + "pppppppp");
+        final String role = sharedPreferences.getString("role", "");
+        System.out.println(role + "pppppppp");
         isFormFilled = true;
-        if (ide.isEmpty()) {
+        if (role.isEmpty()) {
             isFormFilled = false;
         }
 
@@ -30,11 +30,19 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
 
                 if (isFormFilled){
+                    if (role.equalsIgnoreCase("Customer") ){
+                        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(SplashActivity.this, role, Toast.LENGTH_SHORT).show();
+                        finish();
+                        finishAffinity();
+                    }else if (role.equalsIgnoreCase("Admin") ){
+                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(SplashActivity.this, role, Toast.LENGTH_SHORT).show();
+                        finish();
+                        finishAffinity();}
 
-                    startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-                    finish();
                 }else{
                     startActivity(new Intent(getApplicationContext(),LoginActivity.class));
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
