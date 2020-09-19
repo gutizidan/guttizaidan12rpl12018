@@ -14,7 +14,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
 
         android:orientation="vertical"
 
@@ -180,7 +180,7 @@
                                     android:layout_marginRight="@dimen/normalPadding"
 
 
-                                    android:text="Design Thinking"
+                                    android:text="Mobil LCGC"
                                     android:textColor="@color/darkTextColor"
                                     android:textSize="16sp" />
 
@@ -244,7 +244,7 @@
                                     android:layout_marginRight="@dimen/normalPadding"
 
 
-                                    android:text="Design Thinking"
+                                    android:text="Mobil 5 Seat"
                                     android:textColor="@color/darkTextColor"
                                     android:textSize="16sp" />
 
@@ -321,7 +321,7 @@
                                     android:layout_marginRight="@dimen/normalPadding"
 
 
-                                    android:text="Design Thinking"
+                                    android:text="Mobil 7 Seat"
                                     android:textColor="@color/darkTextColor"
                                     android:textSize="16sp" />
 
@@ -385,7 +385,7 @@
                                     android:layout_marginRight="@dimen/normalPadding"
 
 
-                                    android:text="Design Thinking"
+                                    android:text="Mobil Sport"
                                     android:textColor="@color/darkTextColor"
                                     android:textSize="16sp" />
 
@@ -461,7 +461,7 @@
                                     android:layout_marginRight="@dimen/normalPadding"
 
 
-                                    android:text="Design Thinking"
+                                    android:text="Mobil PickUp"
                                     android:textColor="@color/darkTextColor"
                                     android:textSize="16sp" />
 
@@ -526,7 +526,7 @@
                                     android:layout_marginRight="@dimen/normalPadding"
 
 
-                                    android:text="Design Thinking"
+                                    android:text="Truk Towing"
                                     android:textColor="@color/darkTextColor"
                                     android:textSize="16sp" />
 

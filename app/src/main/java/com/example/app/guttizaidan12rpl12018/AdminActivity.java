@@ -40,7 +40,8 @@ public class AdminActivity extends AppCompatActivity {
     private rv_adapter rv_adapter1;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout ;
-    private TextView TvDialog,TvDialogNama,TvDialog2;
+    private TextView TvDialog2;
+    private EditText etEmailDialog,etNamaDialog,etNoHPDialog,etNoKTPDialog,etAlamatDialog;
     private String nama;
 
     @Override
@@ -55,7 +56,7 @@ public class AdminActivity extends AppCompatActivity {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("id", id);
-        AndroidNetworking.post("http://192.168.6.82/TugasAPI2/show_user.php")
+        AndroidNetworking.post("http://192.168.6.136/TugasAPI2/show_user.php")
                 .addBodyParameter(body)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -81,6 +82,9 @@ public class AdminActivity extends AppCompatActivity {
                                     item.setId(aData.getString("ID"));
                                     item.setEmail(aData.getString("EMAIL"));
                                     item.setNama(aData.getString("NAMA"));
+                                    item.setNOHP(aData.getString("NOHP"));
+                                    item.setALAMAT(aData.getString("ALAMAT"));
+                                    item.setNOKTP(aData.getString("NOKTP"));
 
                                     rv_modelArrayList.add(item);
                                 }rv_adapter1.notifyDataSetChanged();
@@ -125,7 +129,7 @@ public class AdminActivity extends AppCompatActivity {
                 rv_modelArrayList.clear();
                 HashMap<String, String> body = new HashMap<>();
                 body.put("id", id);
-                AndroidNetworking.post("http://192.168.6.82/TugasAPI2/show_user.php")
+                AndroidNetworking.post("http://192.168.6.136/TugasAPI2/show_user.php")
                         .addBodyParameter(body)
                         .setPriority(Priority.MEDIUM)
                         .build()
@@ -151,6 +155,9 @@ public class AdminActivity extends AppCompatActivity {
                                             item.setId(aData.getString("ID"));
                                             item.setEmail(aData.getString("EMAIL"));
                                             item.setNama(aData.getString("NAMA"));
+                                            item.setNOHP(aData.getString("NOHP"));
+                                            item.setALAMAT(aData.getString("ALAMAT"));
+                                            item.setNOKTP(aData.getString("NOKTP"));
 
                                             rv_modelArrayList.add(item);
                                         }rv_adapter1.notifyDataSetChanged();
@@ -197,13 +204,68 @@ public class AdminActivity extends AppCompatActivity {
     }
     private void showSelectedHero(final rv_model hero) {
         Toast.makeText(this, "Kamu memilih " + hero.getNama(), Toast.LENGTH_SHORT).show();
-        View dlgView = LayoutInflater.from(AdminActivity.this).inflate(R.layout.dialog_profile, null);
+        View dlgView = LayoutInflater.from(AdminActivity.this).inflate(R.layout.dialog_user, null);
         final Dialog dialog = new Dialog(AdminActivity.this, android.R.style.Theme_Material_Dialog);
-        TvDialog = dlgView.findViewById(R.id.TvLogout);
-        TvDialog.setText("Delete");
-        TvDialogNama = dlgView.findViewById(R.id.tvNamaProfile);
-        TvDialogNama.setText(hero.getNama());
-        ((LinearLayout) dlgView.findViewById(R.id.divDelete)).setOnClickListener(new View.OnClickListener() {
+
+         etEmailDialog = dlgView.findViewById(R.id.etEmailDialog);
+         etNamaDialog = dlgView.findViewById(R.id.etNamaDialog);
+         etNoHPDialog = dlgView.findViewById(R.id.etNoHPDialog);
+         etNoKTPDialog = dlgView.findViewById(R.id.etNoKTPDialog);
+         etAlamatDialog = dlgView.findViewById(R.id.etAlamatDialog);
+
+         etEmailDialog.setText(hero.getEmail());
+         etNamaDialog.setText(hero.getNama());
+         etNoHPDialog.setText(hero.getNOHP());
+         etNoKTPDialog.setText(hero.getNOKTP());
+         etAlamatDialog.setText(hero.getALAMAT());
+        SharedPreferences sharedPreferences = getSharedPreferences("Tugas PTS", MODE_PRIVATE);
+        final String id_auth = sharedPreferences.getString("id", "");
+
+
+        ((LinearLayout) dlgView.findViewById(R.id.divSaveUser)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AndroidNetworking.post("http://192.168.6.136/TugasAPI2/update.php")
+                        .addBodyParameter("email", etEmailDialog.getText().toString().trim().toUpperCase())
+                        .addBodyParameter("nama", etNamaDialog.getText().toString().trim().toUpperCase())
+                        .addBodyParameter("nohp", etNoHPDialog.getText().toString().trim().toUpperCase())
+                        .addBodyParameter("noktp", etNoKTPDialog.getText().toString().trim().toUpperCase())
+                        .addBodyParameter("alamat", etAlamatDialog.getText().toString().trim().toUpperCase())
+                        .addBodyParameter("id", hero.getId())
+                        .addBodyParameter("id_auth", id_auth)
+                        .setPriority(Priority.MEDIUM)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.d("GZS", "respon : " + response);
+
+                                String status = response.optString("STATUS");
+                                String message = response.optString("MESSAGE");
+                                if (status.equalsIgnoreCase("SUCCESS")) {
+                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                }
+                                else {
+                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                Toast.makeText(getApplicationContext(), "ERROR LUR", Toast.LENGTH_SHORT).show();
+                                Log.d("GZS", "onError: " + anError.getErrorBody(    ));
+                                Log.d("GZS", "onError: " + anError.getLocalizedMessage());
+                                Log.d("GZS", "onError: " + anError.getErrorDetail());
+                                Log.d("GZS", "onError: " + anError.getResponse());
+                                Log.d("GZS  ", "onError: " + anError.getErrorCode());
+                            }
+                        });
+            }
+        });
+
+        ((LinearLayout) dlgView.findViewById(R.id.divDeleteUser)).setOnClickListener(new View.OnClickListener() {
             private void doNothing() {
 
             }
@@ -215,7 +277,7 @@ public class AdminActivity extends AppCompatActivity {
                 HashMap<String, String> body = new HashMap<>();
                 body.put("id", ide);
                 body.put("id_delete", hero.getId());
-                AndroidNetworking.post("http://192.168.6.82/TugasAPI2/delete.php")
+                AndroidNetworking.post("http://192.168.6.136/TugasAPI2/delete.php")
                         .addBodyParameter(body)
                         .setPriority(Priority.MEDIUM)
                         .build()

@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     HashMap<String, String> body = new HashMap<>();
                     body.put("email", hp);
                     body.put("password", password);
-                    AndroidNetworking.post("http://192.168.6.82/TugasAPI2/login.php")
+                    AndroidNetworking.post("http://192.168.6.136/TugasAPI2/login.php")
                             .addBodyParameter(body)
                             .setPriority(Priority.MEDIUM)
                             .build()

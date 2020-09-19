@@ -61,16 +61,17 @@
 <!--            android:layout_gravity="center_horizontal"-->
 <!--            android:layout_marginTop="@dimen/loginViewsMargin"/>-->
         <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-            app:spinning_bar_width="4dp"
-            app:spinning_bar_color="#00a5ff"
-            android:text="Login "
-            app:spinning_bar_padding="6dp"
-            app:initialCornerAngle="27dp"
-            android:background="@drawable/login_button_bk"
             android:id="@+id/btnLogin"
             style="@style/loginButton"
+            android:layout_height="34dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/loginViewsMargin"/>
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:background="@drawable/login_button_bk"
+            android:text="Login "
+            app:initialCornerAngle="27dp"
+            app:spinning_bar_color="#fff"
+            app:spinning_bar_padding="6dp"
+            app:spinning_bar_width="4dp" />
             />
 
         <TextView

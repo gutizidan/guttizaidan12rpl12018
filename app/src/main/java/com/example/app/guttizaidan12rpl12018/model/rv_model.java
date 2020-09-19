@@ -28,4 +28,31 @@ public class rv_model {
     private String nama;
     private String email;
     private String id;
+    private String NOHP;
+    private String ALAMAT;
+    private String NOKTP;
+
+    public String getNOHP() {
+        return NOHP;
+    }
+
+    public void setNOHP(String NOHP) {
+        this.NOHP = NOHP;
+    }
+
+    public String getALAMAT() {
+        return ALAMAT;
+    }
+
+    public void setALAMAT(String ALAMAT) {
+        this.ALAMAT = ALAMAT;
+    }
+
+    public String getNOKTP() {
+        return NOKTP;
+    }
+
+    public void setNOKTP(String NOKTP) {
+        this.NOKTP = NOKTP;
+    }
 }
