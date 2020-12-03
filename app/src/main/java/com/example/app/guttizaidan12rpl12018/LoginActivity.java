@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                                             finish();
                                             finishAffinity();
                                         }else if (ROLE.equalsIgnoreCase("Admin") ){
-                                            Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                                            Intent intent = new Intent(getApplicationContext(), AdminDashboardActivity.class);
                                             startActivity(intent);
                                             Toast.makeText(LoginActivity.this, sender, Toast.LENGTH_SHORT).show();
                                             finish();

@@ -24,8 +24,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.example.app.guttizaidan12rpl12018.adapter.rv_adapter;
-import com.example.app.guttizaidan12rpl12018.model.rv_model;
+import com.example.app.guttizaidan12rpl12018.adapter.rv_adaptercar;
+import com.example.app.guttizaidan12rpl12018.model.car_model;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,9 +35,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AdminActivity extends AppCompatActivity {
-    private List<rv_model> rv_modelArrayList = new ArrayList<>();
-    private rv_adapter rv_adapter1;
+public class AdminCarManageActivity extends AppCompatActivity {
+    private List<car_model> rv_modelArrayList = new ArrayList<>();
+    private rv_adaptercar rv_adapter1;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout ;
     private TextView TvDialog2;
@@ -47,7 +47,7 @@ public class AdminActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_admin_car_manage);
         SharedPreferences sharedPreferences = getSharedPreferences("Tugas PTS", MODE_PRIVATE);
         final String id = sharedPreferences.getString("id", "");
         recyclerView = findViewById(R.id.my_recycler_view);
@@ -56,7 +56,7 @@ public class AdminActivity extends AppCompatActivity {
 
         HashMap<String, String> body = new HashMap<>();
         body.put("id", id);
-        AndroidNetworking.post("http://192.168.6.136/TugasAPI2/show_user.php")
+        AndroidNetworking.post("http://192.168.6.136/TugasAPI2/showcaradmin.php")
                 .addBodyParameter(body)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -78,13 +78,13 @@ public class AdminActivity extends AppCompatActivity {
                                 for (int i = 0; i < orders.length(); i++) {
                                     final JSONObject aData = orders.optJSONObject(i);
                                     System.out.println(aData.get("ID")+"ayo ojo error :(");
-                                    rv_model item = new rv_model();
+                                    car_model item = new car_model();
                                     item.setId(aData.getString("ID"));
-                                    item.setEmail(aData.getString("EMAIL"));
-                                    item.setNama(aData.getString("NAMA"));
-                                    item.setNOHP(aData.getString("NOHP"));
-                                    item.setALAMAT(aData.getString("ALAMAT"));
-                                    item.setNOKTP(aData.getString("NOKTP"));
+                                    item.setKode(aData.getString("KODE"));
+                                    item.setMerk(aData.getString("MERK"));
+                                    item.setJenis(aData.getString("JENIS"));
+                                    item.setWarna(aData.getString("WARNA"));
+                                    item.setHargasewa(aData.getString("HARGASEWA"));
 
                                     rv_modelArrayList.add(item);
                                 }rv_adapter1.notifyDataSetChanged();
@@ -111,13 +111,13 @@ public class AdminActivity extends AppCompatActivity {
                     }
                 });
 
-        rv_adapter1 = new rv_adapter(getApplicationContext(), rv_modelArrayList);
+        rv_adapter1 = new rv_adaptercar(getApplicationContext(), rv_modelArrayList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(rv_adapter1);
-        rv_adapter1.setOnItemClickCallback(new rv_adapter.OnItemClickCallback() {
+        rv_adapter1.setOnItemClickCallback(new rv_adaptercar.OnItemClickCallback() {
             @Override
-            public void onItemClicked(rv_model data) {
+            public void onItemClicked(car_model data) {
                 showSelectedHero(data);
             }
         });
@@ -151,13 +151,13 @@ public class AdminActivity extends AppCompatActivity {
                                         for (int i = 0; i < orders.length(); i++) {
                                             final JSONObject aData = orders.optJSONObject(i);
                                             System.out.println(aData.get("ID")+"ayo ojo error :(");
-                                            rv_model item = new rv_model();
+                                            car_model item = new car_model();
                                             item.setId(aData.getString("ID"));
-                                            item.setEmail(aData.getString("EMAIL"));
-                                            item.setNama(aData.getString("NAMA"));
-                                            item.setNOHP(aData.getString("NOHP"));
-                                            item.setALAMAT(aData.getString("ALAMAT"));
-                                            item.setNOKTP(aData.getString("NOKTP"));
+                                            item.setKode(aData.getString("KODE"));
+                                            item.setMerk(aData.getString("MERK"));
+                                            item.setJenis(aData.getString("JENIS"));
+                                            item.setWarna(aData.getString("WARNA"));
+                                            item.setHargasewa(aData.getString("HARGASEWA"));
 
                                             rv_modelArrayList.add(item);
                                         }rv_adapter1.notifyDataSetChanged();
@@ -184,13 +184,13 @@ public class AdminActivity extends AppCompatActivity {
                             }
                         });
 
-                rv_adapter1 = new rv_adapter(getApplicationContext(), rv_modelArrayList);
+                rv_adapter1 = new rv_adaptercar(getApplicationContext(), rv_modelArrayList);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 recyclerView.setAdapter(rv_adapter1);
-                rv_adapter1.setOnItemClickCallback(new rv_adapter.OnItemClickCallback() {
+                rv_adapter1.setOnItemClickCallback(new rv_adaptercar.OnItemClickCallback() {
                     @Override
-                    public void onItemClicked(rv_model data) {
+                    public void onItemClicked(car_model data) {
                         showSelectedHero(data);
                     }
                 });
@@ -202,22 +202,22 @@ public class AdminActivity extends AppCompatActivity {
 
 
     }
-    private void showSelectedHero(final rv_model hero) {
-        Toast.makeText(this, "Kamu memilih " + hero.getNama(), Toast.LENGTH_SHORT).show();
-        View dlgView = LayoutInflater.from(AdminActivity.this).inflate(R.layout.dialog_user, null);
-        final Dialog dialog = new Dialog(AdminActivity.this, android.R.style.Theme_Material_Dialog);
+    private void showSelectedHero(final car_model hero) {
+        Toast.makeText(this, "Kamu memilih " + hero.getKode(), Toast.LENGTH_SHORT).show();
+        View dlgView = LayoutInflater.from(AdminCarManageActivity.this).inflate(R.layout.dialog_car, null);
+        final Dialog dialog = new Dialog(AdminCarManageActivity.this, android.R.style.Theme_Material_Dialog);
 
-         etEmailDialog = dlgView.findViewById(R.id.etEmailDialog);
-         etNamaDialog = dlgView.findViewById(R.id.etNamaDialog);
-         etNoHPDialog = dlgView.findViewById(R.id.etNoHPDialog);
-         etNoKTPDialog = dlgView.findViewById(R.id.etNoKTPDialog);
-         etAlamatDialog = dlgView.findViewById(R.id.etAlamatDialog);
+        etEmailDialog = dlgView.findViewById(R.id.etEmailDialog);
+        etNamaDialog = dlgView.findViewById(R.id.etNamaDialog);
+        etNoHPDialog = dlgView.findViewById(R.id.etNoHPDialog);
+        etNoKTPDialog = dlgView.findViewById(R.id.etNoKTPDialog);
+        etAlamatDialog = dlgView.findViewById(R.id.etAlamatDialog);
 
-         etEmailDialog.setText(hero.getEmail());
-         etNamaDialog.setText(hero.getNama());
-         etNoHPDialog.setText(hero.getNOHP());
-         etNoKTPDialog.setText(hero.getNOKTP());
-         etAlamatDialog.setText(hero.getALAMAT());
+        etEmailDialog.setText(hero.getKode());
+        etNamaDialog.setText(hero.getMerk());
+        etNoHPDialog.setText(hero.getJenis());
+        etNoKTPDialog.setText(hero.getWarna());
+        etAlamatDialog.setText(hero.getHargasewa());
         SharedPreferences sharedPreferences = getSharedPreferences("Tugas PTS", MODE_PRIVATE);
         final String id_auth = sharedPreferences.getString("id", "");
 
@@ -225,12 +225,12 @@ public class AdminActivity extends AppCompatActivity {
         ((LinearLayout) dlgView.findViewById(R.id.divSaveUser)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AndroidNetworking.post("http://192.168.6.136/TugasAPI2/update.php")
-                        .addBodyParameter("email", etEmailDialog.getText().toString().trim().toUpperCase())
-                        .addBodyParameter("nama", etNamaDialog.getText().toString().trim().toUpperCase())
-                        .addBodyParameter("nohp", etNoHPDialog.getText().toString().trim().toUpperCase())
-                        .addBodyParameter("noktp", etNoKTPDialog.getText().toString().trim().toUpperCase())
-                        .addBodyParameter("alamat", etAlamatDialog.getText().toString().trim().toUpperCase())
+                AndroidNetworking.post("http://192.168.6.136/TugasAPI2/updatecar.php")
+                        .addBodyParameter("kode", etEmailDialog.getText().toString().trim().toUpperCase())
+                        .addBodyParameter("merk", etNamaDialog.getText().toString().trim().toUpperCase())
+                        .addBodyParameter("jenis", etNoHPDialog.getText().toString().trim().toUpperCase())
+                        .addBodyParameter("warna", etNoKTPDialog.getText().toString().trim().toUpperCase())
+                        .addBodyParameter("hargasewa", etAlamatDialog.getText().toString().trim().toUpperCase())
                         .addBodyParameter("id", hero.getId())
                         .addBodyParameter("id_auth", id_auth)
                         .setPriority(Priority.MEDIUM)
@@ -265,127 +265,7 @@ public class AdminActivity extends AppCompatActivity {
             }
         });
 
-        ((LinearLayout) dlgView.findViewById(R.id.divDeleteUser)).setOnClickListener(new View.OnClickListener() {
-            private void doNothing() {
 
-            }
-
-            @Override
-            public void onClick(View view) {
-                SharedPreferences sharedPreferences = getSharedPreferences("Tugas PTS", MODE_PRIVATE);
-                final String ide = sharedPreferences.getString("id", "");
-                HashMap<String, String> body = new HashMap<>();
-                body.put("id", ide);
-                body.put("id_delete", hero.getId());
-                AndroidNetworking.post("http://192.168.6.136/TugasAPI2/delete.php")
-                        .addBodyParameter(body)
-                        .setPriority(Priority.MEDIUM)
-                        .build()
-                        .getAsJSONObject(new JSONObjectRequestListener() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                String status = response.optString("STATUS");
-                                String message = response.optString("MESSAGE");
-                                String sender = response.optString("SENDER");
-                                if (status.equalsIgnoreCase("SUCCESS")) {
-                                    JSONObject payload = response.optJSONObject("PAYLOAD");
-
-                                    Toast.makeText(AdminActivity.this, message, Toast.LENGTH_SHORT).show();
-                                    dialog.dismiss();
-                                    SharedPreferences sharedPreferences = getSharedPreferences("Tugas PTS", MODE_PRIVATE);
-                                    final String id = sharedPreferences.getString("id", "");
-                                    rv_modelArrayList.clear();
-                                    HashMap<String, String> body = new HashMap<>();
-                                    body.put("id", id);
-                                    AndroidNetworking.post("http://192.168.6.136/TugasAPI2/show_user.php")
-                                            .addBodyParameter(body)
-                                            .setPriority(Priority.MEDIUM)
-                                            .build()
-                                            .getAsJSONObject(new JSONObjectRequestListener() {
-                                                @Override
-                                                public void onResponse(JSONObject response) {
-                                                    try {
-                                                        Log.d("GZS", "respon : " + response);
-
-                                                        String status = response.optString("STATUS");
-                                                        String message = response.optString("MESSAGE");
-                                                        String sender = response.optString("SENDER");
-                                                        if (status.equalsIgnoreCase("SUCCESS")) {
-                                                            JSONArray orders = response.optJSONObject("PAYLOAD").optJSONArray("DATA");
-
-                                                            if (orders == null) return;
-                                                            System.out.println(orders.length()+"gzs");
-
-                                                            for (int i = 0; i < orders.length(); i++) {
-                                                                final JSONObject aData = orders.optJSONObject(i);
-                                                                System.out.println(aData.get("ID")+"ayo ojo error :(");
-                                                                rv_model item = new rv_model();
-                                                                item.setId(aData.getString("ID"));
-                                                                item.setEmail(aData.getString("EMAIL"));
-                                                                item.setNama(aData.getString("NAMA"));
-                                                                item.setNOHP(aData.getString("NOHP"));
-                                                                item.setALAMAT(aData.getString("ALAMAT"));
-                                                                item.setNOKTP(aData.getString("NOKTP"));
-
-                                                                rv_modelArrayList.add(item);
-                                                            }rv_adapter1.notifyDataSetChanged();
-
-
-
-                                                        } else {
-                                                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
-                                                    }
-
-                                                }
-
-                                                @Override
-                                                public void onError(ANError anError) {
-                                                    Toast.makeText(getApplicationContext(), "ERROR LUR", Toast.LENGTH_SHORT).show();
-                                                    Log.d("GZS", "onError: " + anError.getErrorBody());
-                                                    Log.d("GZS", "onError: " + anError.getLocalizedMessage());
-                                                    Log.d("GZS", "onError: " + anError.getErrorDetail());
-                                                    Log.d("GZS", "onError: " + anError.getResponse());
-                                                    Log.d("GZS  ", "onError: " + anError.getErrorCode());
-                                                }
-                                            });
-
-                                    rv_adapter1 = new rv_adapter(getApplicationContext(), rv_modelArrayList);
-                                    recyclerView.setHasFixedSize(true);
-                                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                                    recyclerView.setAdapter(rv_adapter1);
-                                    rv_adapter1.setOnItemClickCallback(new rv_adapter.OnItemClickCallback() {
-                                        @Override
-                                        public void onItemClicked(rv_model data) {
-                                            showSelectedHero(data);
-                                        }
-                                    });
-
-
-
-
-                                }
-                                else {
-                                    Toast.makeText(AdminActivity.this, message, Toast.LENGTH_SHORT).show();
-                                }
-
-                            }
-
-                            @Override
-                            public void onError(ANError anError) {
-                                Toast.makeText(getApplicationContext(), "ERROR LUR", Toast.LENGTH_SHORT).show();
-                                Log.d("GZS", "onError: " + anError.getErrorBody());
-                                Log.d("GZS", "onError: " + anError.getLocalizedMessage());
-                                Log.d("GZS", "onError: " + anError.getErrorDetail());
-                                Log.d("GZS", "onError: " + anError.getResponse());
-                                Log.d("GZS  ", "onError: " + anError.getErrorCode());
-                            }
-                        });
-
-            }
-        });
 
         dialog.setContentView(dlgView);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -393,8 +273,8 @@ public class AdminActivity extends AppCompatActivity {
 
     }
     public void viewAdminLogout(View v){
-        View dlgView = LayoutInflater.from(AdminActivity.this).inflate(R.layout.dialog_profile, null);
-        final Dialog dialog = new Dialog(AdminActivity.this, android.R.style.Theme_Material_Dialog);
+        View dlgView = LayoutInflater.from(AdminCarManageActivity.this).inflate(R.layout.dialog_profile, null);
+        final Dialog dialog = new Dialog(AdminCarManageActivity.this, android.R.style.Theme_Material_Dialog);
         TvDialog2 = (TextView) dlgView.findViewById(R.id.tvNamaProfile);
         TvDialog2.setText(nama);
 

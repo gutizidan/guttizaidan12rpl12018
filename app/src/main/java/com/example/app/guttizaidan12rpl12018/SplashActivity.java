@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
                         finish();
                         finishAffinity();
                     }else if (role.equalsIgnoreCase("Admin") ){
-                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), AdminDashboardActivity.class);
                         startActivity(intent);
                         Toast.makeText(SplashActivity.this, role, Toast.LENGTH_SHORT).show();
                         finish();
